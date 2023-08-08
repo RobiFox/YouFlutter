@@ -47,7 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text("Enter YouTube URL"),
-            TextField(controller: textEditingController),
+            TextField(controller: textEditingController, textAlign: TextAlign.center),
             SizedBox(
               height: 16,
             ),
@@ -85,7 +85,7 @@ class _MyHomePageState extends State<MyHomePage> {
     }
     if(streamInfo != null) {
       var vid = await yt.videos.get(textEditingController.text);
-      var title = vid.title;
+      var title = vid.title.replaceAll(RegExp("[^a-zA-Z0-9 -]"), "");
 
       var stream = yt.videos.streamsClient.get(streamInfo);
 
